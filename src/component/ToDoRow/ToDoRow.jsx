@@ -8,45 +8,50 @@ import {
   DropdownItem,
 } from "reactstrap";
 import "./ToDoRow.scss";
-
-
-
-function ToDoRow({ item }) {
+import {connect} from 'react-redux'
+import {deletetodo} from '../../redux/ToDo/ToDoAction'
+import AddSubCategoryModal from "../AddSubCategoryModal/AddSubCategoryModal"
+import SubCategory from "../SubCategory/SubCategory"
+function ToDoRow({ item ,deletetodo}) {
   const [temp, settemp] = useState(false);
-  const mytoggle = () => {
+  const subCatShowToggle = () => {
     if (temp) settemp(false);
     else settemp(true);
   };
   const [dropdownOpen1, setDropdownOpen1] = useState(false);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const toggle1 = () => setDropdownOpen1((prevState) => !prevState);
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const handleDelete=(id)=>{
-      
+
+  const [modal, setModal] = useState(false);
+  const ModalToggle = () => setModal(!modal);
+  const ShowSubCatModal=()=>{
+    ModalToggle()
+  }
+  const handleDelete=(item)=>{
+    deletetodo(item)
+
   }
   return (
     <>
       <tr>
-        <th onClick={() => mytoggle()} scope="row">
+        <th onClick={() => subCatShowToggle()} scope="row">
           {item.id}
         </th>
-        <td onClick={() => mytoggle()}>{item.category}</td>
-        <td onClick={() => mytoggle()}>
+        <td onClick={() => subCatShowToggle()}>{item.category}</td>
+        <td onClick={() => subCatShowToggle()}>
           <div className="text-center">{item.progress} %</div>
           <Progress color="success" value={item.progress} />
         </td>
-        <td onClick={() => mytoggle()}>{item.time}</td>
+        <td onClick={() => subCatShowToggle()}>{item.time}</td>
         <td>
           <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
             <DropdownToggle>
               <i class="fas fa-ellipsis-v"></i>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem >Add</DropdownItem>
+              <DropdownItem onClick={()=>ShowSubCatModal()} >Add</DropdownItem>
               <DropdownItem>Edit</DropdownItem>
-              <DropdownItem onClick={()=>handleDelete(item.id)}>Delete</DropdownItem>
+              <DropdownItem onClick={()=>handleDelete(item)}>Delete</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </td>
@@ -57,41 +62,17 @@ function ToDoRow({ item }) {
       >
         <th>status</th>
         <th>title</th>
-        <th>Action</th>
+        <th>Description</th>
         <th>Time</th>
         <th>action</th>
       </thead>
       {item.tasks.map((inneritem) => (
-        <tr
-          className="whitebg"
-          style={{ display: temp ? "table-row" : "none" }}
-        >
-          <th scope="row">
-            <input type="checkbox" />
-          </th>
-          <td>{inneritem.text}</td>
-          <td></td>
-          <td>
-            " 00:00:00 "
-            <Button outline color="primary">
-              START
-            </Button>
-          </td>
-          <td>
-            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle>
-                <i class="fas fa-ellipsis-v"></i>
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </td>
-        </tr>
+        <SubCategory inneritem={inneritem} temp={temp}/>
       ))}
+      <AddSubCategoryModal modal={modal} ModalToggle={ModalToggle} id={item.id} />
     </>
   );
 }
 
-export default ToDoRow;
+
+export default connect(null,{deletetodo})(ToDoRow);

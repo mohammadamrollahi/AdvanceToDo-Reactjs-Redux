@@ -6,7 +6,7 @@ function ToDoTable({ToDoList}) {
 
   return (
 
-    <Table dark>
+    <Table dark className="w-100">
       <thead>
       <th>Number</th>
           <th>Category</th>
