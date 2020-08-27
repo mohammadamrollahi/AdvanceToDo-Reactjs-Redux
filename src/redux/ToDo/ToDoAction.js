@@ -11,3 +11,9 @@ export const addsubcategory=(subcategory)=>{
         payload:subcategory
     }
 }
+export const editcategory=(item,newTitle)=>{
+    return{
+        type:types.EDIT_CATEGORY,
+        payload:{item,newTitle},
+    }
+}

@@ -15,10 +15,12 @@ function ToDoTable({ToDoList}) {
           <th>Action</th>
       </thead>
       <tbody>
+        
       {ToDoList.map(item => <ToDoRow item={item}/>
 
 )}
       </tbody>
+
     </Table>
   );
 }

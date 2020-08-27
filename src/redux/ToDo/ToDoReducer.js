@@ -5,7 +5,7 @@ const initialState = {
       category: "programming",
       id: 1,
       progress: "20",
-      time: "2:10:14",
+      time: "02:10",
       tasks: [
 
       ],
@@ -14,14 +14,14 @@ const initialState = {
       category: "exercise",
       id: 2,
       progress: "10",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
           title: "do my work",
           text: "lurem ipusm ipsum ipsum ipsum ipsum",
           id: 1,
-          time:"10:10",
+          time:"02:25:05",
         },
       ],
     },
@@ -29,7 +29,7 @@ const initialState = {
       category: "exercise",
       id: 3,
       progress: "40",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -44,7 +44,7 @@ const initialState = {
       category: "exercise",
       id: 4,
       progress: "60",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -59,7 +59,7 @@ const initialState = {
       category: "exercise",
       id: 5,
       progress: "70",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -74,7 +74,7 @@ const initialState = {
       category: "exercise",
       id: 6,
       progress: "50",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -89,7 +89,7 @@ const initialState = {
       category: "exercise",
       id: 7,
       progress: "50",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -104,7 +104,7 @@ const initialState = {
       category: "exercise",
       id: 8,
       progress: "10",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -119,7 +119,7 @@ const initialState = {
       category: "exercise",
       id: 9,
       progress: "100",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -134,7 +134,7 @@ const initialState = {
       category: "exercise",
       id: 10,
       progress: "0",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -149,7 +149,7 @@ const initialState = {
       category: "family",
       id: 11,
       progress: "80",
-      time: "2:10:14",
+      time: "02:25:05",
       tasks: [
         {
           status: true,
@@ -195,6 +195,22 @@ const ToDoReducer = (state = initialState, action) => {
                 })
             ]
         }
+    }
+    case types.EDIT_CATEGORY:{
+      return{
+        ...state,
+        ToDoList:[
+          ...state.ToDoList.map(item=>{
+            if(item.id==action.payload.item.id)
+            {
+              item.category=action.payload.newTitle
+              return item
+            }
+            else
+            return item
+          })
+        ]
+      }
     }
     default:
       return state;

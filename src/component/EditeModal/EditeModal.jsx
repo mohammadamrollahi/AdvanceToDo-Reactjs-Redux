@@ -1,39 +1,21 @@
-import React, { useState } from "react";
+import React from 'react'
 import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Col,
-  Row,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
-import {addsubcategory} from '../../redux/ToDo/ToDoAction'
-import {connect} from 'react-redux'
-function AddSubCategoryModal({ modal, ModalToggle,id ,addsubcategory}) {
-    const [subCat, setsubCat] = useState({})
-  const handlesubmit=(event)=>
-  {
-    event.preventDefault()
-    addsubcategory(subCat)
-    console.log(subCat.time)
-    ModalToggle()
-  }
-  const handleChange=(event)=>{
-    const {name,value}=event.target
-    setsubCat({...subCat,
-        id,
-        [name]:value,
-    })
-    
-  }
-  return (
-    <div>
-      <Modal isOpen={modal} toggle={ModalToggle}>
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Col,
+    Row,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+  } from "reactstrap";
+function EditeModal({ modal, ModalToggle,id }) {
+    return (
+        <div>
+             <Modal isOpen={modal} toggle={ModalToggle}>
         <ModalHeader toggle={ModalToggle}>Modal title</ModalHeader>
         <Form>
         <ModalBody>
@@ -79,8 +61,8 @@ function AddSubCategoryModal({ modal, ModalToggle,id ,addsubcategory}) {
         </Form>{" "}
       </Modal>
       
-    </div>
-  );
+        </div>
+    )
 }
 
-export default connect(null,{addsubcategory})(AddSubCategoryModal)
+export default EditeModal

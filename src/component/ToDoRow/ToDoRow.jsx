@@ -10,7 +10,7 @@ import {
 import "./ToDoRow.scss";
 import {connect} from 'react-redux'
 import {deletetodo} from '../../redux/ToDo/ToDoAction'
-import AddSubCategoryModal from "../AddSubCategoryModal/AddSubCategoryModal"
+import CatRowModals from "../CatRowModals/CatRowModals"
 import SubCategory from "../SubCategory/SubCategory"
 function ToDoRow({ item ,deletetodo}) {
   const [temp, settemp] = useState(false);
@@ -19,13 +19,18 @@ function ToDoRow({ item ,deletetodo}) {
     else settemp(true);
   };
   const [dropdownOpen1, setDropdownOpen1] = useState(false);
-
+  const [modalType, setmodalType] = useState('')
   const toggle1 = () => setDropdownOpen1((prevState) => !prevState);
 
   const [modal, setModal] = useState(false);
   const ModalToggle = () => setModal(!modal);
   const ShowSubCatModal=()=>{
-    ModalToggle()
+    setmodalType("Add");
+    ModalToggle();
+  }
+  const EditCatModal=()=>{
+    setmodalType("Edit");
+    ModalToggle();
   }
   const handleDelete=(item)=>{
     deletetodo(item)
@@ -50,7 +55,7 @@ function ToDoRow({ item ,deletetodo}) {
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem onClick={()=>ShowSubCatModal()} >Add</DropdownItem>
-              <DropdownItem>Edit</DropdownItem>
+              <DropdownItem onClick={()=>EditCatModal()}>Edit</DropdownItem>
               <DropdownItem onClick={()=>handleDelete(item)}>Delete</DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -69,7 +74,7 @@ function ToDoRow({ item ,deletetodo}) {
       {item.tasks.map((inneritem) => (
         <SubCategory inneritem={inneritem} temp={temp}/>
       ))}
-      <AddSubCategoryModal modal={modal} ModalToggle={ModalToggle} id={item.id} />
+      <CatRowModals modal={modal} ModalToggle={ModalToggle} item={item} modalType={modalType} />
     </>
   );
 }
