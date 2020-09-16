@@ -2,5 +2,9 @@ const types={
     DELETE_TO_DO:"DELETE_To_DO",
     ADD_SUB_CATEGORY:"ADD_SUB_CATEGORY",
     EDIT_CATEGORY:"EDIT_CATEGORY",
+    EDIT_SUBCAT:"EDIT_SUBCAT",
+    MANAGE_ID:"MANAGE_ID",
+    UPDATE_RATE:"UPDATE_RATE"
+    
 }
 export default types
