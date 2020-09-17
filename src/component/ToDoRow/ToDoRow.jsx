@@ -100,12 +100,14 @@ manageid()
         <TableCell onClick={() => subCatShowToggle()} >
        
       <Rating
-        name="hover-feedback"
+        name={item.id}
         value={item.rate}
         precision={0.5}
         onChange={(event, newValue) => {
+          console.log(event)
+          console.log(newValue)
+          console.log(item.id)
           updateRate(item,newValue)
-          console.log(item)
         }}
         // onChangeActive={(event, newHover) => {
         //   setHover(newHover);

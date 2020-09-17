@@ -13,6 +13,8 @@ import TextField from "@material-ui/core/TextField";
 import Checkbox from '@material-ui/core/Checkbox';
 import {connect} from "react-redux"
 import {editsubcategory} from "../../redux/ToDo/ToDoAction"
+import {deletesubcategory} from "../../redux/ToDo/ToDoAction"
+
 
 const useStyles = makeStyles((theme) => ({
   SubCategory:{
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
 }));
-function SubCategory({ inneritem, temp,editsubcategory }) {
+function SubCategory({ inneritem, temp,editsubcategory,deletesubcategory }) {
   const [open, setOpen] = React.useState(false);
   const handleSubmit=()=>{
     editsubcategory(inneritem,handleChangeTemp.title, handleChangeTemp.text,handleChangeTemp.time);
@@ -101,7 +103,7 @@ const [handleChangeTemp, sethandleChangeTemp] = useState({})
           >
            
             <MenuItem onClick={handleOpen}> Edit </MenuItem>
-            <MenuItem >Delete</MenuItem>
+            <MenuItem onClick={()=>deletesubcategory(inneritem)} >Delete</MenuItem>
           </Menu>
 
       </TableCell>
@@ -164,4 +166,4 @@ const [handleChangeTemp, sethandleChangeTemp] = useState({})
   );
 }
 
-export default connect(null,{editsubcategory})(SubCategory);
+export default connect(null,{editsubcategory,deletesubcategory})(SubCategory);

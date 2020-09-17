@@ -192,6 +192,21 @@ const ToDoReducer = (state = initialState, action) => {
         ]
       }
     }
+      case types.DELETE_SUBCAT:{
+        return{
+          ...state,
+          ToDoList:
+            state.ToDoList.map(item=>{
+              if(item.id==Math.floor((action.payload.item.id)/10))
+              {
+                const tasks=item.tasks.filter((taskItem,taskItemIndex)=>taskItem.id != +(`${Math.floor((action.payload.item.id)/10)}${taskItemIndex+1}`))
+                return {...item,tasks}
+              }
+              else return item
+            })
+          
+        }
+      }
       case types.EDIT_SUBCAT:{
         return{
           ...state,
@@ -204,6 +219,8 @@ const ToDoReducer = (state = initialState, action) => {
                     taskItem.title=action.payload.newTitle;
                     taskItem.time=action.payload.newTime; 
                     taskItem.text=action.payload.newText; 
+                    
+                    return item
                   }
                   else return item
                 })

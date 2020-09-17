@@ -29,6 +29,12 @@ export const editsubcategory = (item, newTitle,newText, newTime) => {
         payload: { item , newTitle,newText, newTime}
     }
 }
+export const deletesubcategory = (item) => {
+    return {
+        type: types.DELETE_SUBCAT,
+        payload: { item }
+    }
+}
 export const manageid = () => {
     return {
         type: types.MANAGE_ID
