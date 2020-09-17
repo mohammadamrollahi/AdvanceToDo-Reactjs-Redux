@@ -199,7 +199,7 @@ const ToDoReducer = (state = initialState, action) => {
             state.ToDoList.map(item=>{
               if(item.id==Math.floor((action.payload.item.id)/10))
               {
-                const tasks=item.tasks.filter((taskItem,taskItemIndex)=>taskItem.id != +(`${Math.floor((action.payload.item.id)/10)}${taskItemIndex+1}`))
+                const tasks=item.tasks.filter((taskItem,taskItemIndex)=>action.payload.item.id!= +(`${Math.floor((action.payload.item.id)/10)}${taskItemIndex+1}`))
                 return {...item,tasks}
               }
               else return item
