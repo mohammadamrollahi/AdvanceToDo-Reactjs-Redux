@@ -215,7 +215,7 @@ const ToDoReducer = (state = initialState, action) => {
               if(item.id==Math.floor((action.payload.item.id)/10))
               {
                 item.tasks.map((taskItem,taskItemIndex)=>{
-                  if(taskItem.id== +(`${Math.floor((action.payload.item.id)/10)}${taskItemIndex+1}`)){
+                  if(action.payload.item.id== +(`${Math.floor((action.payload.item.id)/10)}${taskItemIndex+1}`)){
                     taskItem.title=action.payload.newTitle;
                     taskItem.time=action.payload.newTime; 
                     taskItem.text=action.payload.newText; 

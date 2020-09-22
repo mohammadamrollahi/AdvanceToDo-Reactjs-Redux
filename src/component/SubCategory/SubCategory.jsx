@@ -14,6 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {connect} from "react-redux"
 import {editsubcategory} from "../../redux/ToDo/ToDoAction"
 import {deletesubcategory} from "../../redux/ToDo/ToDoAction"
+import {manageid} from "../../redux/ToDo/ToDoAction"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,10 +44,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
 }));
-function SubCategory({ inneritem, temp,editsubcategory,deletesubcategory }) {
+function SubCategory({ inneritem, temp,editsubcategory,deletesubcategory ,manageid}) {
   const [open, setOpen] = React.useState(false);
   const handleSubmit=()=>{
     editsubcategory(inneritem,handleChangeTemp.title, handleChangeTemp.text,handleChangeTemp.time);
+    manageid()
     handleModalClose();
   }
   const handleOpen = () => {
@@ -166,4 +168,4 @@ const [handleChangeTemp, sethandleChangeTemp] = useState({})
   );
 }
 
-export default connect(null,{editsubcategory,deletesubcategory})(SubCategory);
+export default connect(null,{editsubcategory,deletesubcategory,manageid})(SubCategory);
