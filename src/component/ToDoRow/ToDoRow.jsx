@@ -17,7 +17,8 @@ import {manageid} from "../../redux/ToDo/ToDoAction"
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import {updateRate} from "../../redux/ToDo/ToDoAction";
-
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 const StyledRating = withStyles({
   iconFilled: {
     color: '#ff6d75',
@@ -104,25 +105,18 @@ manageid()
         value={item.rate}
         precision={0.5}
         onChange={(event, newValue) => {
-          console.log(event)
-          console.log(newValue)
-          console.log(item.id)
           updateRate(item,newValue)
         }}
-        // onChangeActive={(event, newHover) => {
-        //   setHover(newHover);
-        
-        // }}
+
       />
       {item.rate !== null && <Box ml={2}>{labels[hover !== -1 ? hover : item.rate]}</Box>}
     
         </TableCell>
         <TableCell onClick={() => subCatShowToggle()}>{item.time}</TableCell>
         <TableCell>
-
-          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <i class="fas fa-ellipsis-v"></i>
-          </Button>
+          <IconButton aria-label="delete" className={classes.margin} onClick={handleClick}>
+            <MoreVertIcon />
+          </IconButton>
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}

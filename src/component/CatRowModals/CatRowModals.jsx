@@ -62,6 +62,7 @@ function CatRowModals({
     setsubCat({
       ...subCat,
       id: item.id,
+      status:false,
       [name]: value,
     });
   };

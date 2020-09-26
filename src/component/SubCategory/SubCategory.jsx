@@ -51,6 +51,10 @@ function SubCategory({ inneritem, temp,editsubcategory,deletesubcategory ,manage
     manageid()
     handleModalClose();
   }
+  const handleSubCatDelete=(item)=>{
+    deletesubcategory(item)
+    manageid()
+  }
   const handleOpen = () => {
     setOpen(true);
   };
@@ -80,7 +84,7 @@ const [handleChangeTemp, sethandleChangeTemp] = useState({})
     <TableRow className={classes.SubCategory} style={{display: temp ? "table-row" : "none" }}>
       <TableCell scope="row">
       <Checkbox
-        defaultChecked
+        
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
@@ -105,7 +109,7 @@ const [handleChangeTemp, sethandleChangeTemp] = useState({})
           >
            
             <MenuItem onClick={handleOpen}> Edit </MenuItem>
-            <MenuItem onClick={()=>deletesubcategory(inneritem)} >Delete</MenuItem>
+            <MenuItem onClick={()=>handleSubCatDelete(inneritem)} >Delete</MenuItem>
           </Menu>
 
       </TableCell>
